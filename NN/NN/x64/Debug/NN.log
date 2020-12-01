@@ -1,0 +1,76 @@
+﻿  Agent.cpp
+  Evolution.cpp
+C:\Users\Lrnovo\Desktop\NN\NN\Evolution.cpp(158,78): warning C4244: аргумент: преобразование "float" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=long
+          ]
+  Game.cpp
+  GeneticAlgorithm.cpp
+  Genotype.cpp
+  main.cpp
+  NeuralNetwork.cpp
+  NeuronalLayer.cpp
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\type_traits(1648,27): warning C4244: return: преобразование "double" в "_Rx", возможна потеря данных
+          with
+          [
+              _Rx=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(902): message : выполняется компиляция ссылки на экземпляр шаблон функции "_Rx std::_Invoker_ret<_Rx,false>::_Call<_Callable&,_Ty>(_Callable &,_Ty &&)"
+          with
+          [
+              _Rx=float,
+              _Callable=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(903): message : выполняется компиляция ссылки на экземпляр шаблон функции "_Rx std::_Invoker_ret<_Rx,false>::_Call<_Callable&,_Ty>(_Callable &,_Ty &&)"
+          with
+          [
+              _Rx=float,
+              _Callable=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(902): message : во время компиляции функции-члена класс шаблон "_Rx std::_Func_impl_no_alloc<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,_Rx,float>::_Do_call(float &&)"
+          with
+          [
+              _Rx=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(796): message : выполняется компиляция ссылки на экземпляр класс шаблон функции "std::_Func_impl_no_alloc<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,_Ret,float>"
+          with
+          [
+              _Ret=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(993): message : выполняется компиляция ссылки на шаблон переменной "const bool _Is_large<std::_Func_impl_no_alloc<<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,float,float> >"
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(1126): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Func_class<_Ret,float>::_Reset<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>>(_Fx &&)"
+          with
+          [
+              _Ret=float,
+              _Fx=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\functional(1126): message : выполняется компиляция ссылки на экземпляр шаблон функции "void std::_Func_class<_Ret,float>::_Reset<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>>(_Fx &&)"
+          with
+          [
+              _Ret=float,
+              _Fx=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>
+          ]
+C:\Users\Lrnovo\Desktop\NN\NN\NeuronalLayer.h(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::function<float (float)>::function<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,0>(_Fx)"
+          with
+          [
+              _Fx=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>
+          ]
+C:\Users\Lrnovo\Desktop\NN\NN\NeuronalLayer.h(26): message : выполняется компиляция ссылки на экземпляр шаблон функции "std::function<float (float)>::function<base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>,0>(_Fx)"
+          with
+          [
+              _Fx=base_network::NeuronalLayer::<lambda_f69cc6ac43bdbb6d3422365f59a5cb68>
+          ]
+  Snake.cpp
+  Создание кода...
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: __cdecl sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QEAA@PEBDAEBVlocale@std@@@Z) в функции "public: __cdecl genetic::Evolution::Evolution(void)" (??0Evolution@genetic@@QEAA@XZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: __cdecl sf::String::~String(void)" (__imp_??1String@sf@@QEAA@XZ) в функции "public: __cdecl genetic::Evolution::Evolution(void)" (??0Evolution@genetic@@QEAA@XZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: __cdecl sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QEAA@III@Z) в функции "public: __cdecl genetic::Evolution::Evolution(void)" (??0Evolution@genetic@@QEAA@XZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: void __cdecl sf::Window::close(void)" (__imp_?close@Window@sf@@QEAAXXZ) в функции "public: __cdecl genetic::Evolution::~Evolution(void)" (??1Evolution@genetic@@QEAA@XZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: bool __cdecl sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QEBA_NXZ) в функции "private: void __cdecl genetic::Evolution::_simulate_game(void)" (?_simulate_game@Evolution@genetic@@AEAAXXZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: bool __cdecl sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QEAA_NAEAVEvent@2@@Z) в функции "private: bool __cdecl genetic::Evolution::_check_save(void)" (?_check_save@Evolution@genetic@@AEAA_NXZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: void __cdecl sf::Window::setFramerateLimit(unsigned int)" (__imp_?setFramerateLimit@Window@sf@@QEAAXI@Z) в функции "private: void __cdecl genetic::Evolution::_simulate_game(void)" (?_simulate_game@Evolution@genetic@@AEAAXXZ).
+Evolution.obj : error LNK2019: ссылка на неразрешенный внешний символ "__declspec(dllimport) public: void __cdecl sf::Window::display(void)" (__imp_?display@Window@sf@@QEAAXXZ) в функции "private: void __cdecl genetic::Evolution::_simulate_game(void)" (?_simulate_game@Evolution@genetic@@AEAAXXZ).
+C:\Users\Lrnovo\Desktop\NN\x64\Debug\NN.exe : fatal error LNK1120: неразрешенных внешних элементов: 8

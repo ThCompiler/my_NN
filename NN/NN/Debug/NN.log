@@ -1,0 +1,4 @@
+﻿  Snake.cpp
+C:\Users\Lrnovo\Desktop\NN\NN\Snake.cpp(28,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Lrnovo\Desktop\NN\NN\Snake.cpp(94,28): warning C4018: <: несоответствие типов со знаком и без знака
+  NN.vcxproj -> C:\Users\Lrnovo\Desktop\NN\Debug\NN.exe
