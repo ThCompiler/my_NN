@@ -9,9 +9,9 @@ namespace genetic {
         : _window(sf::VideoMode(game::window_size, game::window_size), "SFML works!")
         , _feeds(_generate_feed(game::window_size)) {
 
-        _agents.resize(size_of_population, Agent(game::Snake::number_of_input_neuron, { 4, 4 }, 3));
+        _agents.resize(size_of_population, Agent(game::Snake::number_of_input_neuron, { 2 }, 3));
         for (int i = 0; i < size_of_population; ++i) {
-            _agents[i] = Agent(game::Snake::number_of_input_neuron, { 4, 4 }, 3);
+            _agents[i] = Agent(game::Snake::number_of_input_neuron, { 2 }, 3);
             _games.push_back(game::Game(game::Snake(_agents[i]), _feeds));
         }
     }
@@ -38,9 +38,10 @@ namespace genetic {
             GeneticAlgorithm::update(_agents);
             _number_of_generation++;
 
-            if (_number_of_generation > 100 * dec++) {
-                _agents[0].save("nn1-3.bin");
-                _agents[0].save("nn2-3.bin");
+            if (_number_of_generation > 100 * dec) {
+                _agents[0].save("nn1-3e.bin");
+                _agents[0].save("nn2-3e.bin");
+                dec++;
             }
 
             std::cout << _agents[0].get_score() << " " << _agents[1].get_score() << " in " 

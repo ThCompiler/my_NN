@@ -1,7 +1,7 @@
 #include "Snake.h"
 
 namespace game {
-    const long Snake::number_of_input_neuron = 5;
+    const long Snake::number_of_input_neuron = 2;
 
     Snake::Snake(genetic::Agent& agent, sf::Color color)
         : _agent(agent)
@@ -40,13 +40,13 @@ namespace game {
 
     void game::Snake::kill() {
         _alive = false;
-        _agent.add_score(-1);
+        //_agent.add_score(-1);
     }
 
     void Snake::add_score() {
         _agent.add_score(64);
         
-        _add_cubes = true;
+        //_add_cubes = true;
     }
 
     sf::Vector2f Snake::get_coords() const
@@ -89,12 +89,10 @@ namespace game {
         std::vector<float> outputs = _agent.get_result(_create_inputs(feed, height, width));
 
         long max_id = 0;
-        double max = LLONG_MIN;
 
         for (long i = 1; i < outputs.size(); ++i) {
-            if (outputs[i] > max) {
+            if (outputs[i] > outputs[max_id]) {
                 max_id = i;
-                max = outputs[i];
             }
         }
 
@@ -125,33 +123,33 @@ namespace game {
         switch (_cubes[0].get_target())
         {
         case move_target::UP:
-            inputs.push_back(test[(long)move_target::LEFT]);
+           /* inputs.push_back(test[(long)move_target::LEFT]);
             inputs.push_back(test[(long)move_target::UP]);
-            inputs.push_back(test[(long)move_target::RIGHT]);
+            inputs.push_back(test[(long)move_target::RIGHT]);*/
             inputs.push_back(dist_to_target.x);
             inputs.push_back(-dist_to_target.y);
             break;
 
         case move_target::LEFT:
-            inputs.push_back(test[(long)move_target::DOWN]);
+            /*inputs.push_back(test[(long)move_target::DOWN]);
             inputs.push_back(test[(long)move_target::LEFT]);
-            inputs.push_back(test[(long)move_target::UP]);
+            inputs.push_back(test[(long)move_target::UP]);*/
             inputs.push_back(-dist_to_target.y);
             inputs.push_back(-dist_to_target.x);
             break;
 
         case move_target::RIGHT:
-            inputs.push_back(test[(long)move_target::UP]);
+           /* inputs.push_back(test[(long)move_target::UP]);
             inputs.push_back(test[(long)move_target::RIGHT]);
-            inputs.push_back(test[(long)move_target::DOWN]);
+            inputs.push_back(test[(long)move_target::DOWN]);*/
             inputs.push_back(dist_to_target.y);
             inputs.push_back(dist_to_target.x);
             break;
 
         case move_target::DOWN:
-            inputs.push_back(test[(long)move_target::RIGHT]);
+            /*inputs.push_back(test[(long)move_target::RIGHT]);
             inputs.push_back(test[(long)move_target::DOWN]);
-            inputs.push_back(test[(long)move_target::LEFT]);
+            inputs.push_back(test[(long)move_target::LEFT]);*/
             inputs.push_back(-dist_to_target.x);
             inputs.push_back(dist_to_target.y);
             break;

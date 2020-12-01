@@ -1,4 +1,13 @@
-﻿  Snake.cpp
-C:\Users\Lrnovo\Desktop\NN\NN\Snake.cpp(28,27): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\Lrnovo\Desktop\NN\NN\Snake.cpp(94,28): warning C4018: <: несоответствие типов со знаком и без знака
-  NN.vcxproj -> C:\Users\Lrnovo\Desktop\NN\Debug\NN.exe
+﻿  Evolution.cpp
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(97,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(107,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(171,78): warning C4244: аргумент: преобразование "float" в "_Ty", возможна потеря данных
+          with
+          [
+              _Ty=long
+          ]
+  Snake.cpp
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(28,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(93,28): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода...
+  NN.vcxproj -> C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe
