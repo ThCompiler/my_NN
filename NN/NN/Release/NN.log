@@ -1,0 +1,24 @@
+﻿  Agent.cpp
+  Evolution.cpp
+C:\Users\vet_v\source\repos\NN\NN\Evolution.cpp(111,31): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\NN\NN\Evolution.cpp(121,31): warning C4018: <: несоответствие типов со знаком и без знака
+  Game.cpp
+  GeneticAlgorithm.cpp
+C:\Users\vet_v\source\repos\NN\NN\GeneticAlgorithm.cpp(52,38): warning C4018: <: несоответствие типов со знаком и без знака
+  Genotype.cpp
+C:\Users\vet_v\source\repos\NN\NN\Genotype.cpp(37,27): warning C4018: <: несоответствие типов со знаком и без знака
+  main.cpp
+  NeuralNetwork.cpp
+C:\Users\vet_v\source\repos\NN\NN\NeuralNetwork.cpp(17,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\NN\NN\NeuralNetwork.cpp(40,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\NN\NN\NeuralNetwork.cpp(71,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\NN\NN\NeuralNetwork.cpp(125,27): warning C4018: <: несоответствие типов со знаком и без знака
+  NeuronalLayer.cpp
+  Randomizer.cpp
+  Snake.cpp
+C:\Users\vet_v\source\repos\NN\NN\Snake.cpp(33,27): warning C4018: <: несоответствие типов со знаком и без знака
+  Создание кода
+  Previous IPDB not found, fall back to full compilation.
+  All 1117 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Создание кода завершено
+  NN.vcxproj -> C:\Users\vet_v\source\repos\NN\Release\NN.exe

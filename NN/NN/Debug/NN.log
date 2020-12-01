@@ -1,0 +1,7 @@
+﻿  Evolution.cpp
+C:\Users\vet_v\source\repos\NN\NN\Evolution.cpp(118,27): warning C4018: <: несоответствие типов со знаком и без знака
+  Game.cpp
+  Snake.cpp
+  main.cpp
+  Создание кода...
+  NN.vcxproj -> C:\Users\vet_v\source\repos\NN\Debug\NN.exe
