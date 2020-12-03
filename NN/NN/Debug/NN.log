@@ -23,5 +23,8 @@ C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(93,28): warning C4018: <: не
   main.cpp
   Создание кода...
   LINK : не найден или не выполнена сборка C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe при последней инкрементной компоновке; выполняется полная компоновка
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   NN.vcxproj -> C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe
