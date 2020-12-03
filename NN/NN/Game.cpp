@@ -37,9 +37,7 @@ namespace game {
             _last_point_snake = _snake.get_score();
             _last_chek = std::chrono::steady_clock::now();
         }
-        return !_snake.live() || (_snake.get_score() == _last_point_snake
-            && std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - _last_chek).count() > 5)
-            || _feeds.size() == 0;
+        return !_snake.live() || _feeds.size() == 0;
     }
 
     long Game::get_score() const {

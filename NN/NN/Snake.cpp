@@ -3,8 +3,9 @@
 namespace game {
     const long Snake::number_of_input_neuron = 5;
 
-    Snake::Snake(genetic::Agent& agent, sf::Color color)
-        : _agent(agent)
+    Snake::Snake(genetic::Agent& agent_moving, genetic::Agent& agent_eating, sf::Color color)
+        : _agent_moving(agent_moving)
+        , _agent_eating(agent_eating)
         , _my_color(color) {
         _cubes.push_back(cube(sf::Vector2f(95, 95), move_target::UP));
     }
@@ -40,11 +41,11 @@ namespace game {
 
     void game::Snake::kill() {
         _alive = false;
-        _agent.add_score(-1);
+        _agent_eating.add_score(-1);
     }
 
     void Snake::add_score() {
-        _agent.add_score(64);
+        _agent_eating.add_score(64);
         
         _add_cubes = true;
     }
@@ -68,7 +69,7 @@ namespace game {
 
     long Snake::get_score() const
     {
-        return _agent.get_score();
+        return _agent_eating.get_score();
     }
 
     bool Snake::check_introsekt(sf::Vector2f coords) const {
@@ -86,18 +87,68 @@ namespace game {
     }
 
     move_target Snake::_think(const sf::Vector2f& feed, long height, long width) const {
-        std::vector<float> outputs = _agent.get_result(_create_inputs(feed, height, width));
+        std::vector<float> outputs = _think_eating(feed, height, width);
 
-        long max_id = 0;
-        double max = LLONG_MIN;
+        move_target wait_moving = _convert_otputs(outputs);
 
-        for (long i = 1; i < outputs.size(); ++i) {
-            if (outputs[i] > max) {
-                max_id = i;
-                max = outputs[i];
-            }
+        outputs = _think_moving(feed, height, width, wait_moving);
+
+        if (outputs[3] > 0) {
+            return wait_moving;
+        }
+        outputs.pop_back();
+
+        return _convert_otputs(outputs);        
+    }
+
+    std::vector<float> Snake::_think_moving(const sf::Vector2f& feed, long height, long width, move_target wait_moving) const {
+        cube tmp = _cubes[0];
+        tmp.move(wait_moving);
+        std::vector<float> test = _create_distance_to_obstacle(height, width, tmp);
+        std::vector<float> inputs;
+
+        switch (_cubes[0].get_target())
+        {
+        case move_target::UP:
+            inputs.push_back(test[(long)move_target::LEFT]);
+            inputs.push_back(test[(long)move_target::UP]);
+            inputs.push_back(test[(long)move_target::RIGHT]);
+            break;
+
+        case move_target::LEFT:
+            inputs.push_back(test[(long)move_target::DOWN]);
+            inputs.push_back(test[(long)move_target::LEFT]);
+            inputs.push_back(test[(long)move_target::UP]);
+            break;
+
+        case move_target::RIGHT:
+            inputs.push_back(test[(long)move_target::UP]);
+            inputs.push_back(test[(long)move_target::RIGHT]);
+            inputs.push_back(test[(long)move_target::DOWN]);
+            break;
+
+        case move_target::DOWN:
+            inputs.push_back(test[(long)move_target::RIGHT]);
+            inputs.push_back(test[(long)move_target::DOWN]);
+            inputs.push_back(test[(long)move_target::LEFT]);
+            break;
+
+        default:
+            throw std::exception("Something strange");
+            break;
         }
 
+        return _agent_moving.get_result(inputs);
+    }
+
+    move_target Snake::_convert_otputs(std::vector<float> outputs) const {
+        long max_id = 0;
+
+        for (long i = 1; i < outputs.size(); ++i) {
+            if (outputs[i] > outputs[max_id]) {
+                max_id = i;
+            }
+        }
         move_target last = _cubes[0].get_target();
 
         switch (max_id) {
@@ -116,61 +167,43 @@ namespace game {
         }
     }
 
-    std::vector<float> Snake::_create_inputs(const sf::Vector2f& feed, long height, long width) const
-    {
-        std::vector<float> test = _create_distance_to_obstacle(height, width);
-        std::vector<float> inputs;
-        sf::Vector2f dist_to_target = { (feed.x - _cubes[0].get_coords().x)/size, (feed.y - _cubes[0].get_coords().y)/size };
+    std::vector<float> Snake::_think_eating(const sf::Vector2f& feed, long height, long width) const {
+        sf::Vector2f dist_to_target = { (feed.x - _cubes[0].get_coords().x) / size, (feed.y - _cubes[0].get_coords().y) / size };
 
+        float normal_width = (float)width / size;
+        float normal_height = (float)height / size;
+
+        std::vector<float>inputs;
         switch (_cubes[0].get_target())
         {
         case move_target::UP:
-            inputs.push_back(test[(long)move_target::LEFT]);
-            inputs.push_back(test[(long)move_target::UP]);
-            inputs.push_back(test[(long)move_target::RIGHT]);
-            inputs.push_back(dist_to_target.x);
-            inputs.push_back(-dist_to_target.y);
+            inputs.push_back(dist_to_target.x / normal_width);
+            inputs.push_back(-dist_to_target.y / normal_height);
             break;
 
         case move_target::LEFT:
-            inputs.push_back(test[(long)move_target::DOWN]);
-            inputs.push_back(test[(long)move_target::LEFT]);
-            inputs.push_back(test[(long)move_target::UP]);
-            inputs.push_back(-dist_to_target.y);
-            inputs.push_back(-dist_to_target.x);
+            inputs.push_back(-dist_to_target.y / normal_height);
+            inputs.push_back(-dist_to_target.x / normal_width);
             break;
 
         case move_target::RIGHT:
-            inputs.push_back(test[(long)move_target::UP]);
-            inputs.push_back(test[(long)move_target::RIGHT]);
-            inputs.push_back(test[(long)move_target::DOWN]);
-            inputs.push_back(dist_to_target.y);
-            inputs.push_back(dist_to_target.x);
+            inputs.push_back(dist_to_target.y / normal_height);
+            inputs.push_back(dist_to_target.x / normal_width);
             break;
 
         case move_target::DOWN:
-            inputs.push_back(test[(long)move_target::RIGHT]);
-            inputs.push_back(test[(long)move_target::DOWN]);
-            inputs.push_back(test[(long)move_target::LEFT]);
-            inputs.push_back(-dist_to_target.x);
-            inputs.push_back(dist_to_target.y);
+            inputs.push_back(-dist_to_target.x / normal_width);
+            inputs.push_back(dist_to_target.y / normal_height);
             break;
 
         default:
             throw std::exception("Something strange");
             break;
         }
-
-        for (auto& in : inputs) {
-            //if (in >= 0) {
-                in /= ((float)width/size);
-            //}
-        }
-
-        return inputs;
+        return _agent_eating.get_result(inputs);
     }
 
-    std::vector<float> Snake::_create_distance_to_obstacle(long height, long width) const {
+    std::vector<float> Snake::_create_distance_to_obstacle(long height, long width, cube tmp) const {
         std::vector<float> test { _cubes[0].get_coords().x, (width - _cubes[0].get_coords().x)
                                   , _cubes[0].get_coords().y, (height - _cubes[0].get_coords().y) };
 
@@ -179,14 +212,14 @@ namespace game {
                 if (cube.get_coords().y < _cubes[0].get_coords().y) {
                     test[(long)move_target::UP] = _cubes[0].get_coords().y - cube.get_coords().y;
                 }
-                if (cube.get_coords().y > _cubes[0].get_coords().y) {
+                if (cube.get_coords().y > tmp.get_coords().y) {
                     test[(long)move_target::DOWN] = cube.get_coords().y - _cubes[0].get_coords().y;
                 }
             }
 
             if (cube.get_coords().y == _cubes[0].get_coords().y) {
                 if (cube.get_coords().x < _cubes[0].get_coords().x) {
-                    test[(long)move_target::LEFT] = _cubes[0].get_coords().x - cube.get_coords().x;
+                    test[(long)move_target::LEFT] = tmp.get_coords().x - cube.get_coords().x;
                 }
                 if (cube.get_coords().x > _cubes[0].get_coords().x) {
                     test[(long)move_target::RIGHT] = cube.get_coords().x - _cubes[0].get_coords().x;
@@ -194,10 +227,10 @@ namespace game {
             }
         }
         
-        test[0] = test[0]/size > 1.0f ? 0.0f : float(width);
-        test[1] = test[1]/size > 1.0f ? 0.0f : float(width);
-        test[2] = test[2]/size > 1.0f ? 0.0f : float(width);
-        test[3] = test[3]/size > 1.0f ? 0.0f : float(width);
+        test[0] = test[0]/size > 1.0f ? 0.0f : 1.0f;
+        test[1] = test[1]/size > 1.0f ? 0.0f : 1.0f;
+        test[2] = test[2]/size > 1.0f ? 0.0f : 1.0f;
+        test[3] = test[3]/size > 1.0f ? 0.0f : 1.0f;
         return test;
     }
 
@@ -205,7 +238,7 @@ namespace game {
         : _coords(coords) {}
 
     move_target cube::move(move_target target_next) {
-        switch (_move_target) {
+        switch (target_next) {
         case move_target::UP:
             _coords.y -= (double)size;
             break;

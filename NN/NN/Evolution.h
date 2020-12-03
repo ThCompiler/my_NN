@@ -17,7 +17,7 @@ namespace genetic {
 
         static bool do_evolution;
 
-        void load(std::string path);
+        void load(std::string path_eating, std::string path_moving);
 
         ~Evolution();
     private:

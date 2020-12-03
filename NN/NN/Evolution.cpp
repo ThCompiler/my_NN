@@ -12,7 +12,7 @@ namespace genetic {
         _agents.resize(size_of_population, Agent(game::Snake::number_of_input_neuron, { 4, 4 }, 3));
         for (int i = 0; i < size_of_population; ++i) {
             _agents[i] = Agent(game::Snake::number_of_input_neuron, { 4, 4 }, 3);
-            _games.push_back(game::Game(game::Snake(_agents[i]), _feeds));
+            _games.push_back(game::Game(game::Snake(_agents[i], _agents[i]), _feeds));
         }
     }
 
@@ -25,7 +25,7 @@ namespace genetic {
         _agents = GeneticAlgorithm::recombinate(_agents, size_of_population);
 
         for (int i = 0; i < size_of_population; ++i) {
-            _games.push_back(game::Game(game::Snake(_agents[i]), _feeds));
+            _games.push_back(game::Game(game::Snake(_agents[i], _agents[i]), _feeds));
         }
     }
 
@@ -54,10 +54,11 @@ namespace genetic {
         _agents[0].save("nn9.bin");
     }
 
-    void Evolution::load(std::string path) {
-        Agent load = Agent(path);
-        
-        game::Game loaded = game::Game(game::Snake(load, sf::Color::Red), _generate_feed(game::window_size));
+    void Evolution::load(std::string path_eating, std::string path_moving) {
+        Agent load_eating = Agent(path_eating);
+        Agent load_moving = Agent(path_moving);
+
+        game::Game loaded = game::Game(game::Snake(load_moving, load_eating, sf::Color::Red), _generate_feed(game::window_size));
         _window.setFramerateLimit(30);
         while (!loaded.end_game()) {
             _window.clear();
@@ -124,7 +125,7 @@ namespace genetic {
         _feeds = _generate_feed(game::window_size);
 
         for (int i = 0; i < size_of_population; ++i) {
-            _games.push_back(game::Game(game::Snake(_agents[i]), _feeds));
+            _games.push_back(game::Game(game::Snake(_agents[i], _agents[i]), _feeds));
         }
     }
 

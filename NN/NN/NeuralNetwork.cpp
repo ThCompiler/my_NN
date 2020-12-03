@@ -13,6 +13,12 @@ namespace base_network {
         binary::read(in, _number_outputs);
         _genotype.load(in);
 
+        if (_topology.size() == 0) {
+            _layers.push_back(NeuronalLayer(_number_outputs, _number_inputs));
+            _set_genotype(_genotype);
+            return;
+        }
+
         _layers.push_back(NeuronalLayer(_topology[0], _number_inputs));
         for (int i = 1; i < _topology.size(); ++i) {
             _layers.push_back(NeuronalLayer(_topology[i], _topology[i - 1]));
@@ -34,6 +40,12 @@ namespace base_network {
 
         if (genotype.get_genom().size() != number_weight) {
             throw std::invalid_argument("Number of gens im genotype match the number of weight in nerual network");
+        }
+
+        if (_topology.size() == 0) {
+            _layers.push_back(NeuronalLayer(_number_outputs, _number_inputs));
+            _set_genotype(genotype);
+            return;
         }
 
         _layers.push_back(NeuronalLayer(_topology[0], _number_inputs));
@@ -67,6 +79,10 @@ namespace base_network {
     }
 
     long NN::calculate_number_weigth(long number_inputs, std::vector<long> topology, long number_outputs) {
+        if (topology.size() == 0) {
+            return number_inputs * number_outputs;
+        }
+
         long sum = number_inputs * topology[0] + number_outputs * topology.back();
         for (int i = 1; i < topology.size(); ++i) {
             sum += topology[i] * topology[i - 1];
@@ -117,6 +133,12 @@ namespace base_network {
         }
 
         auto iter_begin = _genotype.get_genom().begin();
+        if (_topology.size() == 0) {
+            _layers[0].set_weight_from_gen(_genotype.get_genom().begin(),
+                (_genotype.get_genom().begin() + _number_inputs * _number_outputs));
+            return;
+        }
+
         _layers[0].set_weight_from_gen(_genotype.get_genom().begin(),
             (_genotype.get_genom().begin() + _number_inputs * _topology[0]));
 

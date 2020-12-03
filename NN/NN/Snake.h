@@ -37,7 +37,7 @@ namespace game {
     public:
         static const long number_of_input_neuron;
 
-        Snake(genetic::Agent& agent, sf::Color color = sf::Color::Blue);
+        Snake(genetic::Agent& agent_moving, genetic::Agent& agent_eating, sf::Color color = sf::Color::Blue);
 
         void move(const sf::Vector2f& feed, long height, long width);
 
@@ -57,14 +57,19 @@ namespace game {
 
         void set_color(sf::Color color = sf::Color::Blue);
     private:
-        
         move_target _think(const sf::Vector2f& feed, long height, long width) const;
 
-        std::vector<float> _create_inputs(const sf::Vector2f& feed, long height, long width) const;
+        std::vector<float> _think_eating(const sf::Vector2f& feed, long height, long width) const;
 
-        std::vector<float> _create_distance_to_obstacle(long height, long width) const;
+        std::vector<float> _think_moving(const sf::Vector2f& feed
+                                    , long height, long width, move_target wait_moving) const;
 
-        genetic::Agent& _agent;
+        move_target _convert_otputs(std::vector<float> outputs) const;
+
+        std::vector<float> _create_distance_to_obstacle(long height, long width, cube tmp) const;
+
+        genetic::Agent& _agent_moving;
+        genetic::Agent& _agent_eating;
 
         bool _alive = true;
         bool _add_cubes = false;
