@@ -22,6 +22,9 @@ namespace game {
         std::vector<float> outputs = _agent.get_result(inputs);
 
         if (outputs[3] > 0) {
+            if (inputs[0] > 0.5f || inputs[1] > 0.5f || inputs[2] > 0.5f) {
+                kill();
+            }
             _cubes[0].move(_cubes[0].get_target());
             return _cubes[0].get_target();
         }
@@ -85,7 +88,7 @@ namespace game {
 
     void game::Move_snake::kill() {
         _alive = false;
-        _agent.add_score(-1);
+        //_agent.add_score(-1);
     }
 
     void Move_snake::add_score() {
@@ -196,10 +199,14 @@ namespace game {
     }
 
 
-    move_target Move_snake::_think(long height, long width) const {
+    move_target Move_snake::_think(long height, long width) {
+        std::vector<float> inputs = _create_inputs(height, width);
         std::vector<float> outputs = _agent.get_result(_create_inputs(height, width));
 
         if (outputs[3] > 0) {
+            if (inputs[0] > 0.5f || inputs[1] > 0.5f || inputs[2] > 0.5f) {
+                kill();
+            }
             return _cubes[0].get_target();
         }
 

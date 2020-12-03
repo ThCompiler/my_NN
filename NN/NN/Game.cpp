@@ -11,12 +11,13 @@ namespace game {
         for (auto a : right) {
             if (ans == a) {
                 _snake.add_score();
-                break;
+                return;
             }
             else {
                 long a = 0;
             }
         }
+        _snake.kill();
     }
 
     void Game::draw(sf::RenderWindow& window) {

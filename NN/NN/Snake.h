@@ -73,7 +73,7 @@ namespace game {
         move_target get_target();
     private:
         
-        move_target _think(long height, long width) const;
+        move_target _think(long height, long width);
 
         std::vector<float> _create_inputs(long height, long width) const;
 
