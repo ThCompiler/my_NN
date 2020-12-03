@@ -93,7 +93,7 @@ namespace game {
 
         outputs = _think_moving(feed, height, width, wait_moving);
 
-        if (outputs[3] > 0.5f) {
+        if (outputs[3] > 0) {
             return wait_moving;
         }
         outputs.pop_back();
