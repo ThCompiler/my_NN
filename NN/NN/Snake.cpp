@@ -264,12 +264,6 @@ namespace game {
             throw std::exception("Something strange");
         }
 
-        for (auto& in : inputs) {
-            //if (in >= 0) {
-                in /= ((float)width/size);
-            //}
-        }
-
         return inputs;
     }
 
@@ -297,10 +291,10 @@ namespace game {
             }
         }
         
-        test[0] = test[0]/size > 1.0f ? 0.0f : float(width);
-        test[1] = test[1]/size > 1.0f ? 0.0f : float(width);
-        test[2] = test[2]/size > 1.0f ? 0.0f : float(width);
-        test[3] = test[3]/size > 1.0f ? 0.0f : float(width);
+        test[0] = test[0]/size > 1.0f ? 0.0f : 1.0f;
+        test[1] = test[1]/size > 1.0f ? 0.0f : 1.0f;
+        test[2] = test[2]/size > 1.0f ? 0.0f : 1.0f;
+        test[3] = test[3]/size > 1.0f ? 0.0f : 1.0f;
         return test;
     }
 
