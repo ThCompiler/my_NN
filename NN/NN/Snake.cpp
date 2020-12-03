@@ -93,7 +93,7 @@ namespace game {
 
         outputs = _think_moving(feed, height, width, wait_moving);
 
-        if (outputs[3] > 0) {
+        if (outputs[3] > 0.5f) {
             return wait_moving;
         }
         outputs.pop_back();
@@ -204,7 +204,7 @@ namespace game {
     }
 
     std::vector<float> Snake::_create_distance_to_obstacle(long height, long width, cube tmp) const {
-        std::vector<float> test { _cubes[0].get_coords().x, (width - _cubes[0].get_coords().x)
+        std::vector<float> test { _cubes[0].get_coords().x, (height - _cubes[0].get_coords().x)
                                   , _cubes[0].get_coords().y, (height - _cubes[0].get_coords().y) };
 
         for (const auto& cube : _cubes) {
@@ -212,14 +212,14 @@ namespace game {
                 if (cube.get_coords().y < _cubes[0].get_coords().y) {
                     test[(long)move_target::UP] = _cubes[0].get_coords().y - cube.get_coords().y;
                 }
-                if (cube.get_coords().y > tmp.get_coords().y) {
+                if (cube.get_coords().y > _cubes[0].get_coords().y) {
                     test[(long)move_target::DOWN] = cube.get_coords().y - _cubes[0].get_coords().y;
                 }
             }
 
             if (cube.get_coords().y == _cubes[0].get_coords().y) {
                 if (cube.get_coords().x < _cubes[0].get_coords().x) {
-                    test[(long)move_target::LEFT] = tmp.get_coords().x - cube.get_coords().x;
+                    test[(long)move_target::LEFT] = _cubes[0].get_coords().x - cube.get_coords().x;
                 }
                 if (cube.get_coords().x > _cubes[0].get_coords().x) {
                     test[(long)move_target::RIGHT] = cube.get_coords().x - _cubes[0].get_coords().x;
