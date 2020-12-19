@@ -62,11 +62,11 @@ namespace game {
         std::vector<float> _think_eating(const sf::Vector2f& feed, long height, long width) const;
 
         std::vector<float> _think_moving(const sf::Vector2f& feed
-                                    , long height, long width, move_target wait_moving) const;
+                                    , long height, long width, long wait_target) const;
 
         move_target _convert_otputs(std::vector<float> outputs) const;
 
-        std::vector<float> _create_distance_to_obstacle(long height, long width, cube tmp) const;
+        std::vector<float> _create_distance_to_obstacle(long height, long width) const;
 
         genetic::Agent& _agent_moving;
         genetic::Agent& _agent_eating;

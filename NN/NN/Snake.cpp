@@ -89,23 +89,23 @@ namespace game {
     move_target Snake::_think(const sf::Vector2f& feed, long height, long width) const {
         std::vector<float> outputs = _think_eating(feed, height, width);
 
-        move_target wait_moving = _convert_otputs(outputs);
+        long wait_target = 0;
 
-        outputs = _think_moving(feed, height, width, wait_moving);
-
-        if (outputs[3] > 0) {
-            return wait_moving;
+        for (long i = 1; i < outputs.size(); ++i) {
+            if (outputs[i] > outputs[wait_target]) {
+                wait_target = i;
+            }
         }
-        outputs.pop_back();
+
+        outputs = _think_moving(feed, height, width, wait_target);
 
         return _convert_otputs(outputs);        
     }
 
-    std::vector<float> Snake::_think_moving(const sf::Vector2f& feed, long height, long width, move_target wait_moving) const {
-        cube tmp = _cubes[0];
-        tmp.move(wait_moving);
-        std::vector<float> test = _create_distance_to_obstacle(height, width, tmp);
-        std::vector<float> inputs;
+    std::vector<float> Snake::_think_moving(const sf::Vector2f& feed, long height, long width, long wait_target) const {
+        std::vector<float> test = _create_distance_to_obstacle(height, width);
+        std::vector<float> inputs(3, 0);
+        inputs[wait_target] = 1.0f;
 
         switch (_cubes[0].get_target())
         {
@@ -203,7 +203,7 @@ namespace game {
         return _agent_eating.get_result(inputs);
     }
 
-    std::vector<float> Snake::_create_distance_to_obstacle(long height, long width, cube tmp) const {
+    std::vector<float> Snake::_create_distance_to_obstacle(long height, long width) const {
         std::vector<float> test { _cubes[0].get_coords().x, (height - _cubes[0].get_coords().x)
                                   , _cubes[0].get_coords().y, (height - _cubes[0].get_coords().y) };
 

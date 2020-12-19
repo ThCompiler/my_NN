@@ -12,7 +12,6 @@ C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(171,78): warning C4244: а
 C:\Users\vet_v\source\repos\my_NN\NN\NN\GeneticAlgorithm.cpp(52,38): warning C4018: <: несоответствие типов со знаком и без знака
   Genotype.cpp
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Genotype.cpp(61,27): warning C4018: <: несоответствие типов со знаком и без знака
-  main.cpp
   NeuralNetwork.cpp
 C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(23,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(52,27): warning C4018: <: несоответствие типов со знаком и без знака
@@ -21,6 +20,9 @@ C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(147,27): warning C4018
   NeuronalLayer.cpp
   Snake.cpp
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(29,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(94,28): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(147,28): warning C4018: <: несоответствие типов со знаком и без знака
+  main.cpp
   Создание кода...
+  LINK : не найден или не выполнена сборка C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe при последней инкрементной компоновке; выполняется полная компоновка
   NN.vcxproj -> C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe
