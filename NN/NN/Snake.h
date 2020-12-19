@@ -40,7 +40,7 @@ namespace game {
 
         Move_snake(genetic::Agent& agent, sf::Color color = sf::Color::Blue);
 
-        move_target move(long height, long width, std::vector<float> inputs);
+        move_target move(long height, long width, std::vector<float> inputs, int target);
 
         void kill();
 

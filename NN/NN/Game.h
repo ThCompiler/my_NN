@@ -12,7 +12,7 @@ namespace game {
         
         Game(Move_snake shake);
 
-        void move(std::vector<float> inputs, std::vector<long> right);
+        void move(std::vector<float> inputs, std::vector<long> right, int target);
         
         void draw(sf::RenderWindow& window);
 

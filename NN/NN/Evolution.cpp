@@ -9,12 +9,12 @@ namespace genetic {
         , _number_of_generation(0) {
 
         long lenght_snake = math::Randomizer::get_long_rand(10, 40);
-        _agents.resize(size_of_population, Agent(game::Move_snake::number_of_input_neuron, {  }, 4));
+        _agents.resize(size_of_population, Agent(game::Move_snake::number_of_input_neuron, { 3 }, 3));
 
         
         
         for (int i = 0; i < size_of_population; ++i) {
-            _agents[i] = Agent(game::Move_snake::number_of_input_neuron, {  }, 4);
+            _agents[i] = Agent(game::Move_snake::number_of_input_neuron, { 3 }, 3);
 
             game::Move_snake tmp { _agents[i] };
             _games.push_back(game::Game(tmp));
@@ -46,8 +46,8 @@ namespace genetic {
 
             for (int i = 0; i < 1000; ++i) {
                 inputs.push_back(_generate_inputs());
-                targets.push_back(math::Randomizer::get_long_rand(0, 3));
-                answers.push_back(_generate_answers(targets.back(), inputs.back()));
+                targets.push_back(math::Randomizer::get_long_rand(0, 2));
+                answers.push_back(_generate_answers(targets.back(), inputs.back(), targets.back()));
             }
             _simulate_game(inputs, answers, targets);
             //_restart(true);
@@ -108,16 +108,35 @@ namespace genetic {
         return inputs;
     }
 
-    std::vector<long> Evolution::_generate_answers(long target, const std::vector<float>& inputs) const {
+    std::vector<long> Evolution::_generate_answers(long target, const std::vector<float>& inputs, int targets) const {
         std::vector<long> answer;
 
-       if (inputs[1] < 0.5f) {
-            return { target };
+       if (inputs[targets] < 0.5f) {
+           switch (targets) {
+           case 0:
+               return { target == (long)game::move_target::UP ? (long)game::move_target::LEFT :
+                   (target == (long)game::move_target::LEFT ? (long)game::move_target::DOWN :
+                       (target == (long)game::move_target::DOWN ? (long)game::move_target::RIGHT :
+                           (long)game::move_target::UP)) };
+               break;
+           case 1:
+               return{ target };
+               break;
+           case 2:
+               return { target == (long)game::move_target::UP ? (long)game::move_target::RIGHT :
+                   (target == (long)game::move_target::LEFT ? (long)game::move_target::UP :
+                       (target == (long)game::move_target::DOWN ? (long)game::move_target::LEFT :
+                           (long)game::move_target::DOWN)) };
+               break;
+           default:
+               return { target };
+               break;
+           }
         }
 
         for (int i = 0; i < inputs.size(); ++i) {
             if (inputs[i] > 0.5f) continue;
-
+            
             switch (i) {
             case 0:
                 answer.push_back(target == (long)game::move_target::UP ? (long)game::move_target::LEFT :
@@ -148,16 +167,17 @@ namespace genetic {
 
         long max_id = 0;
         long continu = 0;
+        long tmp = math::Randomizer::get_long_rand(0, 3);
         for (auto& game : _games) {
-            game.get_snake().set_target((game::move_target)targets[0]);
+            game.get_snake().set_target((game::move_target)tmp);
         }
 
         while (continu < 1000 && _window.isOpen()) {
             
             //continu = false;
             for (auto& game : _games) {
-                answers[continu] = _generate_answers((long)game.get_snake().get_target(), inputs[continu]);
-                game.move(inputs[continu], answers[continu]);
+                answers[continu] = _generate_answers((long)game.get_snake().get_target(), inputs[continu], targets[continu]);
+                game.move(inputs[continu], answers[continu], targets[continu]);
             }
 
             if (!_check_save()) break;

@@ -5,9 +5,9 @@ namespace game {
         : _snake(shake)
         , _last_point_snake(0) {}
 
-    void game::Game::move(std::vector<float> inputs, std::vector<long> right) {
+    void game::Game::move(std::vector<float> inputs, std::vector<long> right, int target) {
         if (end_game()) return;
-        long ans = (long)_snake.move(window_size, window_size, inputs);
+        long ans = (long)_snake.move(window_size, window_size, inputs, target);
         for (auto a : right) {
             if (ans == a) {
                 _snake.add_score();

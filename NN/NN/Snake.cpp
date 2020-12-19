@@ -3,7 +3,7 @@
 #include <exception>
 
 namespace game {
-    const long Move_snake::number_of_input_neuron = 3;
+    const long Move_snake::number_of_input_neuron = 6;
 
     Move_snake::Move_snake(genetic::Agent& agent, sf::Color color)
         : _agent(agent)
@@ -12,22 +12,18 @@ namespace game {
         _cubes.push_back(cube(sf::Vector2f(205, 205), move_target::UP));
     }
 
-    move_target Move_snake::move(long height, long width, std::vector<float> inputs) {
+    move_target Move_snake::move(long height, long width, std::vector<float> inputs, int target) {
         if (!_alive) return move_target::INCORRECT;
         
         _counter_of_step++;
 
         //move_target next = _think(height, width);
-        
-        std::vector<float> outputs = _agent.get_result(inputs);
-
-        if (outputs[3] > 0) {
-            if (inputs[0] > 0.5f || inputs[1] > 0.5f || inputs[2] > 0.5f) {
-                kill();
-            }
-            _cubes[0].move(_cubes[0].get_target());
-            return _cubes[0].get_target();
-        }
+        std::vector<float> new_inputs(3, 0);
+        new_inputs[target] = 1.0f;
+        new_inputs.push_back(inputs[0]);
+        new_inputs.push_back(inputs[1]);
+        new_inputs.push_back(inputs[2]);
+        std::vector<float> outputs = _agent.get_result(new_inputs);
 
         long max_id = 0;
 
@@ -36,7 +32,7 @@ namespace game {
                 max_id = i;
             }
         }
-
+       // return (move_target)max_id;
         move_target last = _cubes[0].get_target();
 
         switch (max_id) {

@@ -24,7 +24,7 @@ namespace genetic {
 
         std::vector<float> _generate_inputs() const;
 
-        std::vector<long> _generate_answers(long target, const std::vector<float>& inputs) const;
+        std::vector<long> _generate_answers(long target, const std::vector<float>& inputs, int targets) const;
 
         void _simulate_game(std::vector<std::vector<float>>inputs, std::vector<std::vector<long>> answers, std::vector<long> targets);
 
