@@ -1,4 +1,5 @@
-﻿  Evolution.cpp
+﻿  Agent.cpp
+  Evolution.cpp
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(97,31): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(107,31): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(171,78): warning C4244: аргумент: преобразование "float" в "_Ty", возможна потеря данных
@@ -6,8 +7,21 @@ C:\Users\vet_v\source\repos\my_NN\NN\NN\Evolution.cpp(171,78): warning C4244: а
           [
               _Ty=long
           ]
+  Game.cpp
+  GeneticAlgorithm.cpp
+C:\Users\vet_v\source\repos\my_NN\NN\NN\GeneticAlgorithm.cpp(52,38): warning C4018: <: несоответствие типов со знаком и без знака
+  Genotype.cpp
+C:\Users\vet_v\source\repos\my_NN\NN\NN\Genotype.cpp(61,27): warning C4018: <: несоответствие типов со знаком и без знака
+  NeuralNetwork.cpp
+C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(17,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(40,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(71,27): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\vet_v\source\repos\my_NN\NN\NN\NeuralNetwork.cpp(125,27): warning C4018: <: несоответствие типов со знаком и без знака
+  NeuronalLayer.cpp
   Snake.cpp
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(28,27): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\vet_v\source\repos\my_NN\NN\NN\Snake.cpp(93,28): warning C4018: <: несоответствие типов со знаком и без знака
+  main.cpp
   Создание кода...
+  LINK : не найден или не выполнена сборка C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe при последней инкрементной компоновке; выполняется полная компоновка
   NN.vcxproj -> C:\Users\vet_v\source\repos\my_NN\NN\Debug\NN.exe
