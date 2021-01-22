@@ -4,7 +4,7 @@
 #include <chrono>
 
 namespace game {
-    const long window_size = 400;
+    const long window_size = 410;
     const long number_feed = 50;
 
     class Game {
